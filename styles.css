@@ -1,0 +1,177 @@
+body {
+    background: #081b29; 
+  color: #ffffff;
+  }
+
+* .container {
+position: relative;
+}
+
+* .box {
+position: absolute;
+overflow: auto;
+visibility: visible;
+z-index: 1;
+left: 230px;
+right: auto;
+top: 0;
+bottom: auto;
+width: 900px;
+height: 440px;
+margin: 10px;
+padding: 10px;
+background: #00acf076;
+}
+
+* .before {
+z-index: 2;
+width: 210px;
+height: 440px;
+left: 400px;
+right: auto;
+top: 0px;
+bottom: auto;
+background: #00abf0;
+}
+
+
+
+:root {
+  --white: #fff;
+  --darkblue: #1b4965;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: currentColor;
+}
+
+body {
+  margin: 50px 0 150px;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 0 15px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+/* TABLE STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.table-clickable {
+  text-align: left;
+  border-collapse: collapse;
+  border-left: 1px solid var(--darkblue);
+  border-right: 1px solid var(--darkblue);
+  margin: 20px auto;
+}
+
+.table-clickable th,
+.table-clickable td {
+  padding: 5px 10px;
+}
+
+.table-clickable th {
+  color: var(--white);
+  background: var(--darkblue);
+}
+
+.table-clickable tbody tr {
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.table-clickable tbody tr:not(:first-child) {
+  border-top: 1px solid var(--darkblue);
+}
+
+.table-clickable tbody tr:last-child {
+  border-bottom: 1px solid var(--darkblue);
+}
+
+.table-clickable tbody tr:hover {
+  color: var(--white);
+  background: var(--darkblue);
+}
+
+/* FOOTER STYLES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.page-footer {
+  position: fixed;
+  right: 0;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  z-index: 1;
+  background: var(--white);
+}
+
+.page-footer a {
+  display: flex;
+  margin-left: 4px;
+}
+
+
+select{
+  border:none;
+  padding: 10px 20px;
+  border-radius:5px;
+  color:#1b4965;
+  border-color: #081b29;
+  background-color:rgba(0, 255, 255, 0.77);
+}
+
+select:focus{
+  outline:none;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #00abf0;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 9px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
