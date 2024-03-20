@@ -12,7 +12,7 @@ position: absolute;
 overflow: auto;
 visibility: visible;
 z-index: 1;
-left: 230px;
+left: 260px;
 right: auto;
 top: 0;
 bottom: auto;
@@ -25,8 +25,8 @@ background: #00acf076;
 
 * .before {
 z-index: 2;
-width: 210px;
-height: 440px;
+width: 250px;
+height: 700px;
 left: 400px;
 right: auto;
 top: 0px;
@@ -74,10 +74,12 @@ h1 {
   border-left: 1px solid var(--darkblue);
   border-right: 1px solid var(--darkblue);
   margin: 20px auto;
+ 
 }
 
 .table-clickable th,
 .table-clickable td {
+  font-size: 14px;
   padding: 5px 10px;
 }
 
