@@ -12,27 +12,18 @@ position: absolute;
 overflow: auto;
 visibility: visible;
 z-index: 1;
-left: 260px;
+left: 10px;
 right: auto;
 top: 0;
 bottom: auto;
-width: 900px;
-height: 440px;
+width: 1000px;
+height: 600px;
 margin: 10px;
 padding: 10px;
 background: #00acf076;
 }
 
-* .before {
-z-index: 2;
-width: 250px;
-height: 700px;
-left: 400px;
-right: auto;
-top: 0px;
-bottom: auto;
-background: #00abf0;
-}
+
 
 
 
@@ -177,3 +168,4 @@ select:focus{
   opacity: 1;
   right: 0;
 }
+

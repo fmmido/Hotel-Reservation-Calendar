@@ -3,119 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-  
-    <title>Page title</title>
+  <!-- add firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database-compat.js"></script>
+
+    <title>Hotel Reservation Calendar</title>
 </head>
 <body>
    
-    <div class="container">
-        
-        <div class="before">
-            
-            <table id="myTable" border="1px" class="table-clickable">
-                <thead>
-                  
-                <tbody>
-                    <tr data-href="#">
-                      <td>Room 101</td>
-                      <td>Single</td>
-                      <td>empty</td>
-                      <td>clean</td>
-                    </tr>
-                    <tr data-href="#">
-                      <td>Room 102</td>
-                      <td>Double</td>
-                      <td>empty</td>
-                      <td>clean</td>
-                    </tr>
-                    <tr data-href="#">
-                      <td>Room 103</td>
-                      <td>Single</td>
-                      <td>empty</td>
-                      <td>clean</td>
-                    </tr>
-                    <tr data-href="#">
-                      <td>Room 104</td>
-                      <td>Single</td>
-                      <td>empty</td>
-                      <td>clean</td>
-                    </tr>
-                    <tr data-href="#">
-                        <td>Room 105</td>
-                        <td>Double</td>
-                        <td>empty</td>
-                        <td>clean</td>
-                      </tr>
-                      <tr data-href="#">
-                        <td>Room 701</td>
-                        <td>Single</td>
-                        <td>empty</td>
-                        <td>clean</td>
-                      </tr>
-                      <tr data-href="#">
-                        <td>Room 702</td>
-                        <td>Double</td>
-                        <td>empty</td>
-                        <td>clean</td>
-                      </tr>
-                      <tr data-href="#">
-                        <td>Room 703</td>
-                        <td>Single</td>
-                        <td>empty</td>
-                        <td>clean</td>
-                      </tr>
-                      <tr data-href="#">
-                        <td>Room 704</td>
-                        <td>Single</td>
-                        <td>empty</td>
-                        <td>clean</td>
-                      </tr>
-                      <tr data-href="#">
-                          <td>Room 705</td>
-                          <td>Double</td>
-                          <td>empty</td>
-                          <td>clean</td>
-                        </tr>
-                        <tr data-href="#">
-                            <td>Room 901</td>
-                            <td>Single</td>
-                            <td>empty</td>
-                            <td>clean</td>
-                          </tr>
-                          <tr data-href="#">
-                            <td>Room 902</td>
-                            <td>Double</td>
-                            <td>empty</td>
-                            <td>clean</td>
-                          </tr>
-                          <tr data-href="#">
-                            <td>Room 903</td>
-                            <td>Single</td>
-                            <td>empty</td>
-                            <td>clean</td>
-                          </tr>
-                          <tr data-href="#">
-                            <td>Room 904</td>
-                            <td>Single</td>
-                            <td>empty</td>
-                            <td>clean</td>
-                          </tr>
-                          <tr data-href="#">
-                              <td>Room 905</td>
-                              <td>Double</td>
-                              <td>empty</td>
-                              <td>clean</td>
-                            </tr>
-                  </tbody>
-                </thead>
-               <tbody id="datas">
-            
-               </tbody>
-            
-            
-            
-            </table>
-        </div>
+  
+  
         <div class="box">Excersise test
         
        
@@ -132,9 +29,9 @@
 
 <script>
      // store their names within a local array
-    var friendNames = [];
-    function monthValue() { 
     
+    function monthValue() { 
+    var friendNames = [];
     // onchange month drop-down
     
 const selectedMonth = document.getElementById('month').value;
@@ -196,19 +93,49 @@ var array = [friendNames,
             table = document.getElementById("table");
     
     
-    // rows
-    
-    for(var i = 1; i < table.rows.length; i++)
-    {
-      // cells
-      for(var j = 0; j < table.rows[i].cells.length; j++)
-      {
-          table.rows[i].cells[j].innerHTML = array[i - 1][j];
-      }
-    }
-        
-}
+/// change cell color
 
+var tds = table.getElementsByTagName("td");
+
+var array1 = [1, 2, 3, 4];
+
+        for ( var e = 0; e < array1.length; e++ ) {
+            if ( array1[e] === friendNames[e] ) tds[e].style.color = "Red";;
+        }
+    
+
+
+    
+    
+    // write days in rows
+
+    
+     
+    for(var i = 1; i < table.rows.length; i++)
+      {
+      // cells
+      
+            for(var j = 0; j < table.rows[i].cells.length; j++)
+              {
+              table.rows[i].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[2].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[3].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[4].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[5].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[6].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[7].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[8].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[9].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[10].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[11].cells[j+1].innerHTML = array[i - 1][j];
+    
+              }      
+      }
+     
+                          }
+        
+    
+    
 
  
 
@@ -237,6 +164,8 @@ tbody.addEventListener('click', function (e) {
 
         // 1, set option value month number adding 0. [01 02 03 04..]
         month_value = (month_number <= 9) ? '0' + month_number : month_number;
+        
+        
 
         // 2 , or set option value month number. [1 2 3 4..]
         // month_value = month_number;
@@ -248,6 +177,8 @@ tbody.addEventListener('click', function (e) {
         option += '<option value="' + month_value + '"' + selected + '>('+month_number+') '+months[i] + '</option>';
     }
     document.getElementById("month").innerHTML = option;
+     
+  
 })();
 
 
@@ -312,11 +243,13 @@ let dateDropdown = document.getElementById('year');
         <!-- The Row Number 0 -->
         
         <tr>
-            <th scope="row" colspan="31">Reservation Calendar</th>
-            </tr>
+          <th scope="row" colspan="1">Room no.</th>
+          <th scope="row" colspan="31">Reservation Calendar</th>
+        </tr>
         
        
         <tr>
+            <td>10</td>
             <td></td>
             <td></td>
             <td></td>
@@ -348,11 +281,340 @@ let dateDropdown = document.getElementById('year');
             <td></td>
             <td></td>
             <td></td>
-           
         </tr>
-       
-    
-     
+        <tr>
+          <td>10</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </tr> <tr>
+    <td>10</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
     </table>
     </div>
     <script>
@@ -361,14 +623,105 @@ let dateDropdown = document.getElementById('year');
      </script>
 
  
+
+
+
+
+  
+    <!-- connection with firebase database -->
+<script>
+  var arrayRow =[];
+  const firebaseConfig = {
+      databaseURL: "https://hotel-9095b-default-rtdb.firebaseio.com"
+  }
+  firebase.initializeApp(firebaseConfig)
+  // here connection is created with database
+  const database = firebase.database()
+
+  const dataContainer = document.querySelector('tbody')
+
+  // give complete path to fetch data as given during sending
+  var fetchedData = database.ref('messages/')
+  fetchedData.on('value', (snapshot) => {
+      var data = snapshot.val()
+      // now set data in table
+      var htmlData = ''
+      for(var key in data){
+          var value = data[key]
+          htmlData += `
+          
+              <tr>
+                  <td>${value.roomno}</td>
+                  <td>${value.name}</td>
+                  <td>${value.year}</td>
+                  <td>${value.month}</td>
+                  <td>${value.day1}</td>
+                  <td>${value.day2}</td>
+                  <td>${value.day3}</td>
+                  <td>${value.day4}</td>
+                  <td>${value.day5}</td>
+                  <td>${value.day6}</td>
+                  <td>${value.day7}</td>
+                  <td>${value.day8}</td>
+                  <td>${value.day9}</td>
+                  <td>${value.day10}</td>                  
+                  <td>${value.day11}</td>
+                  <td>${value.day12}</td>
+                  <td>${value.day13}</td>
+                  <td>${value.day14}</td>
+                  <td>${value.day15}</td>                  
+                  <td>${value.day16}</td>
+                  <td>${value.day17}</td>
+                  <td>${value.day18}</td>
+                  <td>${value.day19}</td>
+                  <td>${value.day20}</td>                  
+                  <td>${value.day21}</td>
+                  <td>${value.day22}</td>
+                  <td>${value.day23}</td>
+                  <td>${value.day24}</td>
+                  <td>${value.day25}</td>                  
+                  <td>${value.day26}</td>
+                  <td>${value.day27}</td>
+                  <td>${value.day28}</td>
+                  <td>${value.day29}</td>
+                  <td>${value.day30}</td>
+                  <td>${value.day31}</td>
+
+                  <td>
+                      <button onclick="readyForUpdate('${key}', this)">Update</button>
+                      <button onclick="removeMess('${key}')">Delete</button>
+                  </td>
+              </tr>
+          
+          `;
+
+          
+          // Rooms in array then show in table
+          
+          arrayRow.push(value.roomno);
+          console.log(arrayRow);
+          for(var r = 0; r < 10; r++)
+      {
+        
+        table.rows[arrayRow.length].cells[0].innerHTML =  (value.roomno) ;  
  
+      }
+      
+      
+              
+      
+              
+         
+      }
+      
+      // we use unique id's as reference to delete and update data
+     
+      
+  })
+
  
+</script>
 
 </div>
-
-
-</div>
-
-
 </body>
 </html>
