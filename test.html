@@ -1,84 +1,722 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web Crawler</title>
-<script>
-// JavaScript for web crawling
-async function crawlWebsite(url) {
-    try {
-        const response = await fetch(url); // Fetch HTML content from URL
-        const html = await response.text(); // Get the HTML text
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html'); // Parse HTML into DOM
-
-        // Example: Extracting links from the page
-        const links = [];
-        doc.querySelectorAll('a').forEach(link => {
-            let href = link.getAttribute('href');
-            // Ensure href is not null and starts with 'http'
-            if (href && href.startsWith('http')) {
-                // Resolve relative URLs
-                if (!href.startsWith('http://') && !href.startsWith('https://')) {
-                    href = new URL(href, url).href;
-                }
-                links.push(href);
-            }
-        });
-
-        return links;
-    } catch (error) {
-        console.error('Error fetching or parsing website:', error);
-        return [];
-    }
-}
-
-// Function to handle form submission
-async function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent form submission
-
-    const websiteUrl = document.getElementById('website-url').value.trim();
-    if (!websiteUrl) {
-        alert('Please enter a valid website URL.');
-        return;
-    }
-
-    try {
-        const links = await crawlWebsite(websiteUrl); // Call crawl function
-
-        // Display results
-        const resultsElement = document.getElementById('results');
-        resultsElement.innerHTML = ''; // Clear previous results
-
-        if (links.length > 0) {
-            const ul = document.createElement('ul');
-            links.forEach(link => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = link;
-                a.textContent = link;
-                li.appendChild(a);
-                ul.appendChild(li);
-            });
-            resultsElement.appendChild(ul);
-        } else {
-            resultsElement.textContent = 'No links found on ' + websiteUrl;
-        }
-    } catch (error) {
-        console.error('Crawling failed:', error);
-        alert('Crawling failed. Please check the console for details.');
-    }
-}
-</script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+  <!-- add firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-database-compat.js"></script>
+    <title>Hotel Reservation Calendar</title>
 </head>
 <body>
-    <h1>Web Crawler</h1>
-    <form onsubmit="handleFormSubmit(event)">
-        <label for="website-url">Website URL:</label>
-        <input type="text" id="website-url" name="website-url" placeholder="Enter website URL" required>
-        <button type="submit">Crawl</button>
-    </form>
-    <div id="results"></div>
+   
+  
+  
+        <div class="box">Excersise test>
+    <div id="div1">
+
+
+</div>
+    
+    <select id="month" name="month" onchange="monthValue()"></select>
+    
+    <select id="year" name="year" onchange="monthValue()"></select>
+
+<script>
+     // store their names within a local array
+    
+    function monthValue() { 
+    var friendNames = [];
+    // onchange month drop-down
+    
+const selectedMonth = document.getElementById('month').value;
+
+var friendNames2;
+const para2 = document.createElement("h3");
+const node2 = document.createTextNode(selectedMonth);
+
+
+
+
+const element2 = document.getElementById("div1");
+element2.appendChild(para2);
+
+    // onchange year drop-down
+    
+    const selectedYear = document.getElementById('year').value;
+
+var friendNames3;
+const para3 = document.createElement("h4");
+const node3 = document.createTextNode(selectedYear);
+
+
+
+
+const element3 = document.getElementById("div1");
+element3.appendChild(para3)
+
+
+    
+    const numDays = (y, m) => new Date(y, m, 0). getDate();
+let mmm = (numDays (selectedYear, selectedMonth))
+
+
+
+for (let i = 1; i <= mmm; i ++ )
+{console.log(i);
+
+console.log(mmm);
+
+
+    friendNames.push(i);
+}
+
+
+const para = document.createElement("h2");
+const node = document.createTextNode(friendNames);
+
+
+
+
+const element = document.getElementById("div1");
+element.appendChild(para);
+
+// write days to table
+var array = [friendNames,
+                     ["A2","B2","C2"],
+                     ],
+            table = document.getElementById("table");
+    
+    
+/// change cell color
+
+var tds = table.getElementsByTagName("td");
+
+var array1 = [1, 2, 3, 4];
+
+        for ( var e = 0; e < array1.length; e++ ) {
+            if ( array1[e] === friendNames[e] ) tds[e].style.color = "Red";;
+        }
+    
+
+
+    
+    
+    // write days in rows
+
+    
+     
+    for(var i = 1; i < table.rows.length; i++)
+      {
+      // cells
+      
+            for(var j = 0; j < table.rows[i].cells.length; j++)
+              {
+              table.rows[i].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[2].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[3].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[4].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[5].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[6].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[7].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[8].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[9].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[10].cells[j+1].innerHTML = array[i - 1][j],
+              table.rows[11].cells[j+1].innerHTML = array[i - 1][j];
+    
+              }      
+      }
+     
+                          }
+        
+    
+    
+
+ 
+
+// cells of table listener
+
+const tbody = document.querySelector('#position tbody');
+tbody.addEventListener('click', function (e) {
+  const cell = e.target.closest('td');
+  if (!cell) {return;} // Quit, not clicked on a cell
+  const row = cell.parentElement;
+  console.log(cell.innerHTML, row.rowIndex, cell.cellIndex);
+});
+
+</script>
+
+<script>
+(() => {
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let month_selected = (new Date).getMonth(); // current month
+    let option = '';
+    let month_value = '';
+    option = '<option value="">Month</option>'; // first option
+
+    for (let i = 0; i < months.length; i++) {
+        let month_number = (i + 1);
+
+        // 1, set option value month number adding 0. [01 02 03 04..]
+        month_value = (month_number <= 9) ? '0' + month_number : month_number;
+        
+        
+
+        // 2 , or set option value month number. [1 2 3 4..]
+        // month_value = month_number;
+
+        // 3, or set option value month names. [January February]
+        // month_value = months[i];
+
+        let selected = (i === month_selected ? ' selected' : '');
+        option += '<option value="' + month_value + '"' + selected + '>('+month_number+') '+months[i] + '</option>';
+    }
+    document.getElementById("month").innerHTML = option;
+     
+  
+})();
+
+
+
+
+
+
+
+
+</script>
+    
+
+
+
+<script>
+
+// year drop-down
+
+
+let dateDropdown = document.getElementById('year'); 
+       
+  let currentYear = new Date().getFullYear();    
+  let earliestYear = 2018;     
+  while (currentYear >= earliestYear) {      
+    let dateOption = document.createElement('option');          
+    dateOption.text = earliestYear;      
+    dateOption.value = earliestYear;        
+    dateDropdown.add(dateOption);      
+    earliestYear += 1;    
+  }
+</script>
+    
+    
+    
+    <script>
+ 
+        
+    </script>
+    <button type="button" class="button" style="vertical-align:middle" onclick="monthValue()" value="Show"> <span>Show </span></button>
+<!--Table-->
+<table id="myTable">
+    <thead>
+       <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+   <tbody id="datas">
+
+   </tbody>
+
+
+
+</table>
+    
+<div style="float: left">
+    
+    
+    <table id="table" border="1" class="table-clickable">
+                
+        <!-- The Row Number 0 -->
+        
+        <tr>
+          <th scope="row" colspan="1">Room no.</th>
+          <th scope="row" colspan="31">Reservation Calendar</th>
+        </tr>
+        
+       
+        <tr>
+            <td>10</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </tr> <tr>
+    <td>10</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr> <tr>
+  <td>10</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+    </table>
+    </div>
+    <script>
+    
+ 
+     </script>
+
+ 
+
+
+
+
+  
+    <!-- connection with firebase database -->
+<script>
+  var arrayRow =[];
+  const firebaseConfig = {
+      databaseURL: "https://hotel-9095b-default-rtdb.firebaseio.com"
+  }
+  firebase.initializeApp(firebaseConfig)
+  // here connection is created with database
+  const database = firebase.database()
+
+  const dataContainer = document.querySelector('tbody')
+
+  // give complete path to fetch data as given during sending
+  var fetchedData = database.ref('messages/')
+  fetchedData.on('value', (snapshot) => {
+      var data = snapshot.val()
+      // now set data in table
+      var htmlData = ''
+      for(var key in data){
+          var value = data[key]
+          htmlData += `
+          
+              <tr>
+                  <td>${value.roomno}</td>
+                  <td>${value.name}</td>
+                  <td>${value.year}</td>
+                  <td>${value.month}</td>
+                  <td>${value.day1}</td>
+                  <td>${value.day2}</td>
+                  <td>${value.day3}</td>
+                  <td>${value.day4}</td>
+                  <td>${value.day5}</td>
+                  <td>${value.day6}</td>
+                  <td>${value.day7}</td>
+                  <td>${value.day8}</td>
+                  <td>${value.day9}</td>
+                  <td>${value.day10}</td>                  
+                  <td>${value.day11}</td>
+                  <td>${value.day12}</td>
+                  <td>${value.day13}</td>
+                  <td>${value.day14}</td>
+                  <td>${value.day15}</td>                  
+                  <td>${value.day16}</td>
+                  <td>${value.day17}</td>
+                  <td>${value.day18}</td>
+                  <td>${value.day19}</td>
+                  <td>${value.day20}</td>                  
+                  <td>${value.day21}</td>
+                  <td>${value.day22}</td>
+                  <td>${value.day23}</td>
+                  <td>${value.day24}</td>
+                  <td>${value.day25}</td>                  
+                  <td>${value.day26}</td>
+                  <td>${value.day27}</td>
+                  <td>${value.day28}</td>
+                  <td>${value.day29}</td>
+                  <td>${value.day30}</td>
+                  <td>${value.day31}</td>
+
+                  <td>
+                      <button onclick="readyForUpdate('${key}', this)">Update</button>
+                      <button onclick="removeMess('${key}')">Delete</button>
+                  </td>
+              </tr>
+          
+          `;
+
+          
+          // Rooms in array then show in table
+          
+          arrayRow.push(value.roomno);
+          console.log(arrayRow);
+          for(var r = 0; r < 10; r++)
+      {
+        
+        table.rows[arrayRow.length].cells[0].innerHTML =  (value.roomno) ;  
+ 
+      }
+      
+      
+              
+      
+              
+         
+      }
+      
+      // we use unique id's as reference to delete and update data
+     
+      
+  })
+
+ 
+</script>
+
+</div>
 </body>
 </html>
