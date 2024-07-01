@@ -8,7 +8,12 @@
 // JavaScript for web crawling
 async function crawlWebsite(url) {
     try {
-        const response = await fetch(url); // Fetch HTML content from URL
+        const response = await fetch(url, {
+            mode: 'cors' // Use 'no-cors' mode to bypass CORS restrictions (limited use)
+        }); 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const html = await response.text(); // Get the HTML text
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html'); // Parse HTML into DOM
@@ -18,7 +23,7 @@ async function crawlWebsite(url) {
         doc.querySelectorAll('a').forEach(link => {
             let href = link.getAttribute('href');
             // Ensure href is not null and starts with 'http'
-            if (href && href.startsWith('http')) {
+            if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
                 // Resolve relative URLs
                 if (!href.startsWith('http://') && !href.startsWith('https://')) {
                     href = new URL(href, url).href;
