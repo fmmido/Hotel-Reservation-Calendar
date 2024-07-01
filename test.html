@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Crawler</title>
+<script>
+// JavaScript for web crawling
+async function crawlWebsite(url) {
+    try {
+        const response = await fetch(url); // Fetch HTML content from URL
+        const html = await response.text(); // Get the HTML text
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html'); // Parse HTML into DOM
+
+        // Example: Extracting links from the page
+        const links = [];
+        doc.querySelectorAll('a').forEach(link => {
+            let href = link.getAttribute('href');
+            // Ensure href is not null and starts with 'http'
+            if (href && href.startsWith('http')) {
+                // Resolve relative URLs
+                if (!href.startsWith('http://') && !href.startsWith('https://')) {
+                    href = new URL(href, url).href;
+                }
+                links.push(href);
+            }
+        });
+
+        return links;
+    } catch (error) {
+        console.error('Error fetching or parsing website:', error);
+        return [];
+    }
+}
+
+// Function to handle form submission
+async function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const websiteUrl = document.getElementById('website-url').value.trim();
+    if (!websiteUrl) {
+        alert('Please enter a valid website URL.');
+        return;
+    }
+
+    try {
+        const links = await crawlWebsite(websiteUrl); // Call crawl function
+
+        // Display results
+        const resultsElement = document.getElementById('results');
+        resultsElement.innerHTML = ''; // Clear previous results
+
+        if (links.length > 0) {
+            const ul = document.createElement('ul');
+            links.forEach(link => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = link;
+                a.textContent = link;
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            resultsElement.appendChild(ul);
+        } else {
+            resultsElement.textContent = 'No links found on ' + websiteUrl;
+        }
+    } catch (error) {
+        console.error('Crawling failed:', error);
+        alert('Crawling failed. Please check the console for details.');
+    }
+}
+</script>
+</head>
+<body>
+    <h1>Web Crawler</h1>
+    <form onsubmit="handleFormSubmit(event)">
+        <label for="website-url">Website URL:</label>
+        <input type="text" id="website-url" name="website-url" placeholder="Enter website URL" required>
+        <button type="submit">Crawl</button>
+    </form>
+    <div id="results"></div>
+</body>
+</html>
