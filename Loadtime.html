@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Load Time and Server Ping</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Page Load Time and Server Ping</h1>
+        <div class="info" id="load-time">Page Load Time: Calculating...</div>
+        <div class="info" id="ping-time">Ping Time: Calculating...</div>
+    </div>
+
+    <script>
+        // Measure page load time
+        window.onload = function() {
+            const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+            document.getElementById('load-time').innerText = `Page Load Time: ${loadTime} ms`;
+
+            // Measure ping time
+            measurePing();
+        };
+
+        function measurePing() {
+            const pingStart = performance.now();
+
+            fetch(window.location.href, { method: 'HEAD' })
+                .then(() => {
+                    const pingEnd = performance.now();
+                    const pingTime = pingEnd - pingStart;
+                    document.getElementById('ping-time').innerText = `Ping Time: ${pingTime.toFixed(2)} ms`;
+                })
+                .catch(error => {
+                    document.getElementById('ping-time').innerText = `Ping Time: Error measuring ping time`;
+                    console.error('Error measuring ping time:', error);
+                });
+        }
+    </script>
+</body>
+</html
